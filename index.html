@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nitro Type — Season &amp; Loot Survey</title>
+    <meta name="description" content="Vote on upcoming Nitro Type season and loot concepts." />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.nitrotype.com/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.nitrotype.com/favicon-16x16.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ===== RESET ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --nt-bg: #202634;
+            --nt-bg-dark: #181c28;
+            --nt-bg-card: #2a2f42;
+            --nt-bg-input: #1c2030;
+            --nt-red: #df3a3a;
+            --nt-red-hover: #c43030;
+            --nt-green: #3ddc84;
+            --nt-blue: #4a90d9;
+            --nt-gold: #ffc107;
+            --nt-text: #ffffff;
+            --nt-text-dim: #9ca3b8;
+            --nt-text-muted: #5d6477;
+            --nt-border: rgba(255, 255, 255, 0.07);
+            --nt-border-hover: rgba(255, 255, 255, 0.14);
+            --radius: 10px;
+            --radius-sm: 6px;
+            --t: 0.25s ease;
+            --font: 'Montserrat', 'Segoe UI', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--nt-bg);
+            background-image: url('https://www.nitrotype.com/dist/site/images/backgrounds/bg-tires.png');
+            background-repeat: repeat;
+            background-size: 400px;
+            color: var(--nt-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== TOP HEADER BAR (mimics NT) ===== */
+        .nt-topbar {
+            background: var(--nt-bg-dark);
+            border-bottom: 3px solid var(--nt-red);
+            padding: 12px 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nt-topbar-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nt-topbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 12px;
+        }
+
+        .nt-topbar-brand .nt-logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Tabs nav */
+        .nt-tabs {
+            display: flex;
+            gap: 2px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nt-tab {
+            padding: 9px 18px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--nt-text-dim);
+            border-radius: 6px 6px 0 0;
+            cursor: default;
+            transition: background var(--t), color var(--t);
+            user-select: none;
+            text-decoration: none;
+        }
+
+        .nt-tab:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+        }
+
+        .nt-tab.active {
+            background: var(--nt-red);
+            color: #fff;
+        }
+
+        /* ===== PAGE BODY ===== */
+        .page-body {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 32px 16px 60px;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .page-header .subtitle {
+            color: var(--nt-text-dim);
+            font-size: 0.88rem;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-wrap {
+            margin: 0 auto 28px;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--nt-text-muted);
+        }
+
+        .progress-labels span.active {
+            color: var(--nt-red);
+        }
+
+        .progress-labels span.done {
+            color: var(--nt-green);
+        }
+
+        .progress-track {
+            height: 4px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--nt-red), #ff6a3a);
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(223, 58, 58, 0.3);
+        }
+
+        /* ===== STEP CONTAINER ===== */
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--nt-bg-card);
+            border: 1px solid var(--nt-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: border-color var(--t);
+        }
+
+        .card:hover {
+            border-color: var(--nt-border-hover);
+        }
+
+        .card+.card {
+            margin-top: 14px;
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.82rem;
+            color: var(--nt-text-dim);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        /* ===== FORM ELEMENTS ===== */
+        label.field-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--nt-text-dim);
+            margin-bottom: 8px;
+        }
+
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--nt-border);
+            background: var(--nt-bg-input);
+            color: var(--nt-text);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color var(--t), box-shadow var(--t);
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3b8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 32px;
+        }
+
+        select:focus,
+        input[type="text"]:focus {
+            border-color: var(--nt-red);
+            box-shadow: 0 0 0 2px rgba(223, 58, 58, 0.15);
+        }
+
+        .field-group+.field-group {
+            margin-top: 18px;
+        }
+
+        /* Radio row */
+        .radio-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .radio-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .radio-option .radio-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--nt-border);
+            background: var(--nt-bg-input);
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--t);
+            user-select: none;
+        }
+
+        .radio-option .radio-label:hover {
+            border-color: var(--nt-border-hover);
+            background: rgba(42, 47, 66, 0.6);
+        }
+
+        .radio-option input:checked+.radio-label {
+            border-color: var(--nt-green);
+            background: rgba(61, 220, 132, 0.1);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(61, 220, 132, 0.1);
+        }
+
+        .radio-option .radio-label .emoji {
+            font-size: 1.1rem;
+        }
+
+        /* ===== VOTE CARDS ===== */
+        .vote-card {
+            background: var(--nt-bg-card);
+            border: 1px solid var(--nt-border);
+            border-radius: var(--radius);
+            padding: 20px;
+            transition: all var(--t);
+        }
+
+        .vote-card+.vote-card {
+            margin-top: 12px;
+        }
+
+        .vote-card:hover {
+            border-color: var(--nt-border-hover);
+        }
+
+        .vote-card .concept-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .vote-card .concept-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            flex-shrink: 0;
+        }
+
+        .vote-card .concept-name {
+            font-size: 0.98rem;
+            font-weight: 800;
+        }
+
+        .vote-card .concept-desc {
+            font-size: 0.78rem;
+            color: var(--nt-text-dim);
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        /* 5-option vote row */
+        .vote-options {
+            display: flex;
+            gap: 5px;
+        }
+
+        .vote-btn {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+        }
+
+        .vote-btn input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .vote-btn .vote-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 8px 2px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--nt-border);
+            background: var(--nt-bg-input);
+            cursor: pointer;
+            transition: all var(--t);
+            user-select: none;
+        }
+
+        .vote-btn .vote-label .vote-emoji {
+            font-size: 1.1rem;
+            transition: transform var(--t);
+        }
+
+        .vote-btn .vote-label .vote-text {
+            font-size: 0.52rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--nt-text-muted);
+            transition: color var(--t);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .vote-btn .vote-label:hover {
+            border-color: var(--nt-border-hover);
+            background: rgba(42, 47, 66, 0.6);
+        }
+
+        .vote-btn .vote-label:hover .vote-emoji {
+            transform: scale(1.1);
+        }
+
+        /* Selected states */
+        .vote-btn input:checked+.vote-label.must-have {
+            border-color: #3ddc84;
+            background: rgba(61, 220, 132, 0.1);
+            box-shadow: 0 0 10px rgba(61, 220, 132, 0.1);
+        }
+
+        .vote-btn input:checked+.vote-label.must-have .vote-text {
+            color: #3ddc84;
+        }
+
+        .vote-btn input:checked+.vote-label.love {
+            border-color: #6ecf9a;
+            background: rgba(110, 207, 154, 0.08);
+        }
+
+        .vote-btn input:checked+.vote-label.love .vote-text {
+            color: #6ecf9a;
+        }
+
+        .vote-btn input:checked+.vote-label.okay {
+            border-color: var(--nt-blue);
+            background: rgba(74, 144, 217, 0.08);
+        }
+
+        .vote-btn input:checked+.vote-label.okay .vote-text {
+            color: var(--nt-blue);
+        }
+
+        .vote-btn input:checked+.vote-label.not-for-me {
+            border-color: #e08a3a;
+            background: rgba(224, 138, 58, 0.08);
+        }
+
+        .vote-btn input:checked+.vote-label.not-for-me .vote-text {
+            color: #e08a3a;
+        }
+
+        .vote-btn input:checked+.vote-label.hard-pass {
+            border-color: var(--nt-red);
+            background: rgba(223, 58, 58, 0.08);
+        }
+
+        .vote-btn input:checked+.vote-label.hard-pass .vote-text {
+            color: var(--nt-red);
+        }
+
+        .vote-btn input:checked+.vote-label .vote-emoji {
+            transform: scale(1.15);
+        }
+
+        /* ===== SECTION INTRO ===== */
+        .section-intro {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .section-intro .section-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 4px 14px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .section-intro .section-tag.season {
+            background: rgba(223, 58, 58, 0.12);
+            color: var(--nt-red);
+            border: 1px solid rgba(223, 58, 58, 0.2);
+        }
+
+        .section-intro h2 {
+            font-size: 1.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-intro p {
+            color: var(--nt-text-dim);
+            font-size: 0.82rem;
+            margin-top: 5px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            padding: 11px 28px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--t);
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--nt-red);
+            color: #fff;
+            box-shadow: 0 3px 12px rgba(223, 58, 58, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--nt-red-hover);
+            box-shadow: 0 4px 16px rgba(223, 58, 58, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--nt-text-dim);
+            border: 1px solid var(--nt-border);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--nt-border-hover);
+            color: #fff;
+        }
+
+        /* ===== THANK YOU ===== */
+        .thankyou-wrap {
+            text-align: center;
+            padding: 48px 24px;
+        }
+
+        .thankyou-wrap .check-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(61, 220, 132, 0.08);
+            border: 2px solid var(--nt-green);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .thankyou-wrap .check-circle svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--nt-green);
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 16px rgba(61, 220, 132, 0.08);
+            }
+
+            50% {
+                box-shadow: 0 0 32px rgba(61, 220, 132, 0.16);
+            }
+        }
+
+        .thankyou-wrap h2 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .thankyou-wrap p {
+            color: var(--nt-text-dim);
+            font-size: 0.88rem;
+            max-width: 360px;
+            margin: 0 auto;
+            line-height: 1.55;
+        }
+
+        /* ===== ALREADY SUBMITTED ===== */
+        .already-submitted {
+            text-align: center;
+            padding: 56px 24px;
+        }
+
+        .already-submitted .lock-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        .already-submitted h2 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .already-submitted p {
+            color: var(--nt-text-dim);
+            font-size: 0.85rem;
+        }
+
+        .already-submitted .btn {
+            margin-top: 18px;
+        }
+
+        /* ===== FOOTER ===== */
+        .nt-footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 32px;
+            border-top: 1px solid var(--nt-border);
+        }
+
+        .nt-footer a {
+            color: var(--nt-text-muted);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color var(--t);
+        }
+
+        .nt-footer a:hover {
+            color: var(--nt-text-dim);
+        }
+
+        .nt-footer a img {
+            height: 16px;
+            opacity: 0.4;
+            transition: opacity var(--t);
+        }
+
+        .nt-footer a:hover img {
+            opacity: 0.7;
+        }
+
+        /* ===== ADMIN ===== */
+        .admin-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(24, 28, 40, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+        }
+
+        .admin-overlay.open {
+            display: flex;
+        }
+
+        .admin-panel {
+            background: var(--nt-bg-card);
+            border: 1px solid var(--nt-border);
+            border-radius: var(--radius);
+            padding: 28px;
+            max-width: 460px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-panel h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-panel .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--nt-border);
+            font-size: 0.85rem;
+        }
+
+        .admin-panel .stat-row .stat-value {
+            font-weight: 800;
+            color: var(--nt-red);
+        }
+
+        .admin-panel .admin-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        /* Validation */
+        .error-msg {
+            color: var(--nt-red);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 560px) {
+            .vote-options {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .vote-btn {
+                flex: 1 1 calc(33% - 3px);
+            }
+
+            .radio-row {
+                flex-direction: column;
+            }
+
+            .btn-row {
+                flex-direction: column;
+            }
+
+            .btn-row .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .card,
+            .vote-card {
+                padding: 16px;
+            }
+
+            .nt-tab {
+                padding: 7px 12px;
+                font-size: 0.7rem;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 10px;
+        }
+
+        /* ===== NTBOOTSTRAP-STYLE GLOWS ===== */
+        .n-logo {
+            filter: drop-shadow(0 0 8px rgba(223, 58, 58, 0.5)) drop-shadow(0 0 20px rgba(223, 58, 58, 0.25));
+        }
+
+        .nt-tab.active {
+            box-shadow: 0 2px 12px rgba(223, 58, 58, 0.3);
+        }
+
+        .progress-fill {
+            animation: progressGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(223, 58, 58, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(223, 58, 58, 0.5), 0 0 30px rgba(255, 106, 58, 0.2); }
+        }
+
+        .vote-card {
+            transition: all 0.3s ease;
+        }
+
+        .vote-card:hover {
+            transform: scale(1.015);
+            border-color: var(--nt-border-hover);
+        }
+
+        .vote-card.glow-frutiger:hover { box-shadow: 0 0 20px rgba(0, 188, 212, 0.4), 0 0 40px rgba(10, 122, 110, 0.2); }
+        .vote-card.glow-nitro-city:hover { box-shadow: 0 0 20px rgba(224, 64, 251, 0.4), 0 0 40px rgba(13, 10, 43, 0.3); }
+        .vote-card.glow-nitro-myth:hover { box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), 0 0 40px rgba(77, 56, 0, 0.3); }
+
+        /* Staggered entrance */
+        @keyframes cardSlideIn {
+            from { opacity: 0; transform: translateY(24px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .vote-card.animate-in {
+            animation: cardSlideIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        /* ===== MOOD BOARD ===== */
+        .mood-board-thumb {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            margin-bottom: 14px;
+            border: 1px solid var(--nt-border);
+            transition: all 0.3s ease;
+        }
+
+        .mood-board-thumb:hover {
+            border-color: var(--nt-border-hover);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transform: scale(1.01);
+        }
+
+        .mood-board-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mood-board-thumb .expand-hint {
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            color: var(--nt-text-dim);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .mood-board-thumb:hover .expand-hint {
+            opacity: 1;
+        }
+
+        /* Mood board modal lightbox */
+        .mood-modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: rgba(10, 12, 20, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            cursor: pointer;
+        }
+
+        .mood-modal-overlay.open {
+            display: flex;
+            animation: modalFadeIn 0.25s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .mood-modal-content {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            cursor: default;
+            animation: modalScaleIn 0.3s ease;
+        }
+
+        @keyframes modalScaleIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .mood-modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .mood-modal-title {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--nt-text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        .mood-modal-close {
+            position: absolute;
+            top: -14px;
+            right: -14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--nt-bg-card);
+            border: 1px solid var(--nt-border);
+            color: var(--nt-text-dim);
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 1;
+        }
+
+        .mood-modal-close:hover {
+            background: var(--nt-red);
+            border-color: var(--nt-red);
+            color: #fff;
+        }
+
+        @media (max-width: 560px) {
+            .mood-modal-content { max-width: 100%; }
+            .mood-modal-close { top: -10px; right: -4px; width: 30px; height: 30px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NT TOP BAR ===== -->
+    <div class="nt-topbar">
+        <div class="nt-topbar-inner">
+            <div class="nt-topbar-brand">
+                <img src="images/nt-logo.svg" alt="Nitro Type" class="nt-logo-img">
+            </div>
+            <nav class="nt-tabs">
+                <a class="nt-tab" href="https://www.nitrotype.com" target="_blank">Race Now</a>
+                <a class="nt-tab" href="https://www.nitrotype.com/garage" target="_blank">Garage</a>
+                <a class="nt-tab" href="https://www.nitrotype.com/season" target="_blank">Season</a>
+                <a class="nt-tab" href="https://www.nitrotype.com/shop" target="_blank">Shop</a>
+                <a class="nt-tab active">Survey</a>
+                <a class="nt-tab" href="https://www.nitrotype.com/news" target="_blank">News</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ===== PAGE BODY ===== -->
+    <div class="page-body">
+
+        <div class="page-header">
+            <h1>Season &amp; Loot Survey</h1>
+            <p class="subtitle">Help us shape the next season — every vote counts!</p>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-wrap" id="progressWrap">
+            <div class="progress-labels" id="progressLabels">
+                <span class="active">About You</span>
+                <span>Seasons</span>
+                <span>Done</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill" style="width:8%"></div>
+            </div>
+        </div>
+
+        <!-- ========== STEP 1 ========== -->
+        <section class="step active" id="step-1">
+            <div class="card">
+                <div class="card-title">Quick Check-In</div>
+                <div class="card-desc">One quick question before we dive into the fun stuff.</div>
+
+                <!-- Gold status & display name are known server-side for logged-in users -->
+
+                <div class="field-group">
+                    <label class="field-label" for="seasonCompletion">How much of last season did you complete?</label>
+                    <select id="seasonCompletion">
+                        <option value="" disabled selected>Select a range…</option>
+                        <option value="0-25">0 – 25%</option>
+                        <option value="25-50">25 – 50%</option>
+                        <option value="50-75">50 – 75%</option>
+                        <option value="75-100">75 – 100%</option>
+                        <option value="did-not-play">I didn't participate</option>
+                    </select>
+                    <div class="error-msg" id="err-season">Please select your season completion level</div>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-primary" id="btn-next-1">
+                    Continue
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ========== STEP 2: Seasons ========== -->
+        <section class="step" id="step-2">
+            <div class="section-intro">
+                <span class="section-tag season">Season Themes</span>
+                <h2>Vote on Season Concepts</h2>
+                <p>Rate each potential season theme — go with your gut.</p>
+            </div>
+            <div id="season-concepts-container"></div>
+            <div class="btn-row">
+                <button class="btn btn-ghost" id="btn-back-2">Back</button>
+                <button class="btn btn-primary" id="btn-submit" disabled>
+                    Submit Survey
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- ========== STEP 4: Thank You ========== -->
+        <section class="step" id="step-4">
+            <div class="thankyou-wrap">
+                <div class="check-circle">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                </div>
+                <h2>Thank You!</h2>
+                <p>Your feedback has been recorded. We'll use it to shape the next season of Nitro Type. Stay tuned! 🏎️
+                </p>
+            </div>
+        </section>
+
+        <!-- ========== Already Submitted ========== -->
+        <section class="step" id="step-already">
+            <div class="already-submitted">
+                <div class="lock-icon">🔒</div>
+                <h2>You've Already Voted</h2>
+                <p>Thanks for participating! Your survey has been recorded.</p>
+                <button class="btn btn-ghost" id="btn-retake">Retake Survey</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="nt-footer">
+            <a href="https://www.nitrotype.com" target="_blank" rel="noopener">
+                <img src="https://www.nitrotype.com/favicon-32x32.png" alt="NT" />
+                nitrotype.com
+            </a>
+        </footer>
+
+    </div><!-- /page-body -->
+
+    <!-- Mood Board Lightbox Modal -->
+    <div class="mood-modal-overlay" id="moodModal">
+        <div class="mood-modal-content">
+            <button class="mood-modal-close" id="moodModalClose">✕</button>
+            <img id="moodModalImg" src="" alt="Season Mood Board" />
+            <div class="mood-modal-title" id="moodModalTitle"></div>
+        </div>
+    </div>
+
+    <!-- Admin Overlay -->
+    <div class="admin-overlay" id="adminOverlay">
+        <div class="admin-panel">
+            <h3>🔧 Admin Panel</h3>
+            <div class="stat-row"><span>Total Responses</span><span class="stat-value" id="admin-total">0</span></div>
+            <div class="stat-row"><span>Gold Members</span><span class="stat-value" id="admin-gold">0</span></div>
+            <div class="stat-row"><span>Non-Gold</span><span class="stat-value" id="admin-nongold">0</span></div>
+            <div class="admin-actions">
+                <button class="btn btn-primary" id="btn-export">📥 Export JSON</button>
+                <button class="btn btn-ghost" id="btn-clear-data">🗑️ Clear Data</button>
+                <button class="btn btn-ghost" id="btn-close-admin">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const SEASON_CONCEPTS = [
+                { id: 'frutiger-aero', name: 'Frutiger Aero', desc: 'Glossy textures, tropical fish, and 2000s eco-futurism. Bright, clear, and optimistically retro.', icon: '🐬', gradient: 'linear-gradient(135deg,#033d4d,#0a7a6e)', glowClass: 'glow-frutiger', moodBoard: 'images/moodboard_frutiger_aero.png' },
+                { id: 'nitro-city', name: 'Nitro City', desc: 'Midnight Tokyo. Neon-lit streets, underground drift crews, and the hunt for the legendary Ghost.', icon: '🌃', gradient: 'linear-gradient(135deg,#0d0a2b,#3d0a3d)', glowClass: 'glow-nitro-city', moodBoard: 'images/moodboard_nitro_city.png' },
+                { id: 'nitro-myth', name: 'The Nitro Myth', desc: 'Greek mythology meets high-speed racing. Marble columns, golden gods, and divine power.', icon: '🏛️', gradient: 'linear-gradient(135deg,#2b1f00,#4d3800)', glowClass: 'glow-nitro-myth', moodBoard: 'images/moodboard_nitro_myth.png' }
+            ];
+
+            const VOTE_OPTIONS = [
+                { value: 'must-have', emoji: '🔥', label: 'Must Have', cssClass: 'must-have' },
+                { value: 'love', emoji: '👍', label: 'Love It', cssClass: 'love' },
+                { value: 'okay', emoji: '😐', label: "It's Okay", cssClass: 'okay' },
+                { value: 'not-for-me', emoji: '👎', label: 'Not for Me', cssClass: 'not-for-me' },
+                { value: 'hard-pass', emoji: '🚫', label: 'Hard Pass', cssClass: 'hard-pass' }
+            ];
+
+            const STORAGE_KEY = 'nt_survey_responses';
+            const SUBMITTED_KEY = 'nt_survey_submitted';
+            let currentStep = 1;
+
+            const steps = { 1: document.getElementById('step-1'), 2: document.getElementById('step-2'), 4: document.getElementById('step-4'), already: document.getElementById('step-already') };
+            const progressFill = document.getElementById('progressFill');
+            const progressLabels = document.getElementById('progressLabels');
+            const progressWrap = document.getElementById('progressWrap');
+
+            function init() {
+                if (localStorage.getItem(SUBMITTED_KEY) === 'true') { showAlreadySubmitted(); bindRetake(); return; }
+                renderConcepts(SEASON_CONCEPTS, 'season-concepts-container', 'season', true);
+                bindEvents();
+                bindMoodBoard();
+            }
+
+            function bindRetake() {
+                document.getElementById('btn-retake').addEventListener('click', () => { localStorage.removeItem(SUBMITTED_KEY); location.reload(); });
+            }
+
+            function renderConcepts(concepts, containerId, groupName, showMoodBoard) {
+                document.getElementById(containerId).innerHTML = concepts.map((c, i) => `
+      <div class="vote-card ${c.glowClass || ''} animate-in" style="animation-delay:${i * 0.08}s">
+        <div class="concept-header">
+          <div class="concept-icon" style="background:${c.gradient}">${c.icon}</div>
+          <div class="concept-name">${c.name}</div>
+        </div>
+        <div class="concept-desc">${c.desc}</div>
+        ${showMoodBoard && c.moodBoard ? `
+        <div class="mood-board-thumb" data-mood-src="${c.moodBoard}" data-mood-title="${c.name} — Mood Board">
+          <img src="${c.moodBoard}" alt="${c.name} mood board" loading="lazy" />
+          <div class="expand-hint">🔍 Click to expand</div>
+        </div>` : ''}
+        <div class="vote-options">
+          ${VOTE_OPTIONS.map(o => `
+            <div class="vote-btn">
+              <input type="radio" name="vote-${groupName}-${c.id}" id="v-${c.id}-${o.value}" value="${o.value}" />
+              <label class="vote-label ${o.cssClass}" for="v-${c.id}-${o.value}">
+                <span class="vote-emoji">${o.emoji}</span>
+                <span class="vote-text">${o.label}</span>
+              </label>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+            }
+
+            function goToStep(n) {
+                steps[currentStep].classList.remove('active');
+                currentStep = n;
+                steps[n].style.animation = 'none'; steps[n].offsetHeight; steps[n].style.animation = '';
+                steps[n].classList.add('active');
+                updateProgress(n);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function updateProgress(step) {
+                const pcts = { 1: 8, 2: 68, 4: 100 };
+                progressFill.style.width = (pcts[step] || 8) + '%';
+                const stepIndex = { 1: 1, 2: 2, 4: 3 };
+                const si = stepIndex[step] || 1;
+                progressLabels.querySelectorAll('span').forEach((lbl, i) => {
+                    lbl.className = '';
+                    if (i + 1 < si) lbl.classList.add('done');
+                    if (i + 1 === si) lbl.classList.add('active');
+                });
+                progressWrap.style.display = (step === 4 || step === 'already') ? 'none' : '';
+            }
+
+            function showAlreadySubmitted() {
+                Object.values(steps).forEach(s => s.classList.remove('active'));
+                steps.already.classList.add('active');
+                progressWrap.style.display = 'none';
+            }
+
+            function validateStep1() {
+                const season = document.getElementById('seasonCompletion').value;
+                if (!season) { document.getElementById('err-season').classList.add('show'); return false; }
+                document.getElementById('err-season').classList.remove('show');
+                return true;
+            }
+
+            function allVoted(g, concepts) { return concepts.every(c => document.querySelector(`input[name="vote-${g}-${c.id}"]:checked`)); }
+            function updateVoteBtn(g, concepts, btnId) { document.getElementById(btnId).disabled = !allVoted(g, concepts); }
+
+            function gatherResponse() {
+                const sv = {};
+                SEASON_CONCEPTS.forEach(c => { const ch = document.querySelector(`input[name="vote-season-${c.id}"]:checked`); sv[c.id] = ch ? ch.value : null; });
+                return {
+                    timestamp: new Date().toISOString(),
+                    /* goldMember and displayName injected server-side for logged-in users */
+                    seasonCompletion: document.getElementById('seasonCompletion').value,
+                    seasonVotes: sv
+                };
+            }
+
+            function saveResponse(r) {
+                let all = []; try { all = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { all = []; }
+                all.push(r); localStorage.setItem(STORAGE_KEY, JSON.stringify(all)); localStorage.setItem(SUBMITTED_KEY, 'true');
+            }
+
+            function bindEvents() {
+                document.getElementById('btn-next-1').addEventListener('click', () => { if (validateStep1()) goToStep(2); });
+                document.getElementById('btn-back-2').addEventListener('click', () => goToStep(1));
+                document.getElementById('btn-submit').addEventListener('click', () => { saveResponse(gatherResponse()); goToStep(4); });
+                document.getElementById('season-concepts-container').addEventListener('change', () => updateVoteBtn('season', SEASON_CONCEPTS, 'btn-submit'));
+                document.getElementById('seasonCompletion').addEventListener('change', () => document.getElementById('err-season').classList.remove('show'));
+                document.getElementById('btn-retake').addEventListener('click', () => { localStorage.removeItem(SUBMITTED_KEY); location.reload(); });
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); openAdmin(); }
+                    if (e.key === 'Escape') closeMoodModal();
+                });
+                document.getElementById('btn-close-admin').addEventListener('click', closeAdmin);
+                document.getElementById('btn-export').addEventListener('click', exportJSON);
+                document.getElementById('btn-clear-data').addEventListener('click', clearAllData);
+                document.getElementById('adminOverlay').addEventListener('click', (e) => { if (e.target === e.currentTarget) closeAdmin(); });
+            }
+
+            /* ===== MOOD BOARD MODAL ===== */
+            const moodModal = document.getElementById('moodModal');
+            const moodModalImg = document.getElementById('moodModalImg');
+            const moodModalTitle = document.getElementById('moodModalTitle');
+
+            function openMoodModal(src, title) {
+                moodModalImg.src = src;
+                moodModalTitle.textContent = title;
+                moodModal.classList.add('open');
+            }
+            function closeMoodModal() { moodModal.classList.remove('open'); }
+
+            function bindMoodBoard() {
+                document.querySelectorAll('.mood-board-thumb').forEach(thumb => {
+                    thumb.addEventListener('click', () => {
+                        openMoodModal(thumb.dataset.moodSrc, thumb.dataset.moodTitle);
+                    });
+                });
+                document.getElementById('moodModalClose').addEventListener('click', closeMoodModal);
+                moodModal.addEventListener('click', (e) => { if (e.target === moodModal) closeMoodModal(); });
+            }
+
+            function openAdmin() {
+                let all = []; try { all = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { all = []; }
+                document.getElementById('admin-total').textContent = all.length;
+                document.getElementById('admin-gold').textContent = all.filter(r => r.goldMember === 'yes').length;
+                document.getElementById('admin-nongold').textContent = all.filter(r => r.goldMember === 'no').length;
+                document.getElementById('adminOverlay').classList.add('open');
+            }
+            function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
+            function exportJSON() {
+                let all = []; try { all = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch (e) { all = []; }
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(new Blob([JSON.stringify(all, null, 2)], { type: 'application/json' }));
+                a.download = `nitrotype-survey-${new Date().toISOString().slice(0, 10)}.json`;
+                document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            }
+            function clearAllData() {
+                if (confirm('Delete ALL survey responses from this browser?')) {
+                    localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(SUBMITTED_KEY); openAdmin();
+                }
+            }
+
+            init();
+        })();
+    </script>
+
+</body>
+
+</html>

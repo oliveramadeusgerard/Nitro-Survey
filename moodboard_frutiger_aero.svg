@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b2ebf2"/>
+      <stop offset="100%" style="stop-color:#e0f7fa"/>
+    </linearGradient>
+    <linearGradient id="panel1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00bcd4"/>
+      <stop offset="100%" style="stop-color:#26c6da"/>
+    </linearGradient>
+    <linearGradient id="panel2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4dd0e1"/>
+      <stop offset="100%" style="stop-color:#80deea"/>
+    </linearGradient>
+    <linearGradient id="panel3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8bc34a"/>
+      <stop offset="100%" style="stop-color:#aed581"/>
+    </linearGradient>
+    <linearGradient id="panel4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e0f2f1"/>
+      <stop offset="100%" style="stop-color:#b2dfdb"/>
+    </linearGradient>
+    <linearGradient id="panel5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e1f5fe"/>
+    </linearGradient>
+    <linearGradient id="panel6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00897b"/>
+      <stop offset="100%" style="stop-color:#26a69a"/>
+    </linearGradient>
+    <filter id="gloss">
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <radialGradient id="bubble1" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.6)"/>
+      <stop offset="100%" style="stop-color:rgba(0,188,212,0.2)"/>
+    </radialGradient>
+    <radialGradient id="bubble2" cx="40%" cy="35%" r="55%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.5)"/>
+      <stop offset="100%" style="stop-color:rgba(129,212,250,0.3)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="600" fill="url(#bg)"/>
+
+  <!-- Border texture -->
+  <rect width="600" height="600" fill="none" stroke="#b2ebf2" stroke-width="16"/>
+
+  <!-- Panel 1 - Top left large: Sky & water scene -->
+  <rect x="12" y="12" width="260" height="190" rx="6" fill="url(#panel1)"/>
+  <!-- Sky gradient overlay -->
+  <rect x="12" y="12" width="260" height="95" rx="6" fill="#87ceeb" opacity="0.5"/>
+  <!-- Sun -->
+  <circle cx="220" cy="55" r="28" fill="#fff9c4" opacity="0.9"/>
+  <circle cx="220" cy="55" r="20" fill="#fff176"/>
+  <!-- Clouds -->
+  <ellipse cx="80" cy="45" rx="35" ry="18" fill="white" opacity="0.9"/>
+  <ellipse cx="110" cy="38" rx="28" ry="16" fill="white" opacity="0.9"/>
+  <ellipse cx="55" cy="50" rx="22" ry="13" fill="white" opacity="0.8"/>
+  <ellipse cx="160" cy="60" rx="30" ry="15" fill="white" opacity="0.85"/>
+  <ellipse cx="185" cy="55" rx="22" ry="12" fill="white" opacity="0.8"/>
+  <!-- Water -->
+  <rect x="12" y="130" width="260" height="72" fill="#0097a7" rx="0"/>
+  <!-- Water waves -->
+  <path d="M12 140 Q40 133 68 140 Q96 147 124 140 Q152 133 180 140 Q208 147 236 140 Q258 135 272 140 L272 202 L12 202 Z" fill="#00bcd4" opacity="0.6"/>
+  <path d="M12 155 Q50 148 88 155 Q126 162 164 155 Q202 148 240 155 Q258 152 272 155 L272 202 L12 202 Z" fill="#4dd0e1" opacity="0.4"/>
+  <!-- Dolphin 1 -->
+  <ellipse cx="90" cy="160" rx="30" ry="10" fill="#00838f" transform="rotate(-15,90,160)"/>
+  <polygon points="60,155 45,145 50,165" fill="#00838f"/>
+  <circle cx="62" cy="153" r="3" fill="white"/>
+  <!-- Dolphin 2 -->
+  <ellipse cx="200" cy="170" rx="25" ry="9" fill="#006064" transform="rotate(10,200,170)"/>
+  <polygon points="175,167 160,157 165,177" fill="#006064"/>
+  <circle cx="177" cy="164" r="2.5" fill="white"/>
+  <!-- Bubbles in water -->
+  <circle cx="130" cy="175" r="5" fill="none" stroke="white" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="145" cy="165" r="3" fill="none" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="115" cy="183" r="4" fill="none" stroke="white" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Panel 2 - Top right: Glossy UI / Glass effect -->
+  <rect x="284" y="12" width="304" height="190" rx="6" fill="url(#panel5)"/>
+  <!-- Frutiger Aero desktop wallpaper hills -->
+  <rect x="284" y="100" width="304" height="102" fill="#87ceeb"/>
+  <!-- Green rolling hills -->
+  <ellipse cx="350" cy="202" rx="120" ry="60" fill="#7cb342"/>
+  <ellipse cx="500" cy="202" rx="130" ry="55" fill="#8bc34a"/>
+  <ellipse cx="420" cy="202" rx="100" ry="50" fill="#9ccc65"/>
+  <!-- Sky -->
+  <rect x="284" y="12" width="304" height="100" fill="#64b5f6"/>
+  <!-- White fluffy clouds -->
+  <ellipse cx="330" cy="50" rx="40" ry="20" fill="white" opacity="0.95"/>
+  <ellipse cx="360" cy="43" rx="32" ry="18" fill="white" opacity="0.95"/>
+  <ellipse cx="310" cy="55" rx="25" ry="14" fill="white" opacity="0.9"/>
+  <ellipse cx="500" cy="65" rx="45" ry="22" fill="white" opacity="0.95"/>
+  <ellipse cx="535" cy="58" rx="35" ry="18" fill="white" opacity="0.9"/>
+  <!-- Glass button overlay -->
+  <rect x="310" y="140" width="90" height="36" rx="18" fill="rgba(255,255,255,0.45)" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"/>
+  <rect x="310" y="140" width="90" height="18" rx="18" fill="rgba(255,255,255,0.3)"/>
+  <text x="355" y="163" font-family="Arial" font-size="11" fill="#006064" text-anchor="middle" font-weight="bold">START</text>
+  <!-- WiFi symbol -->
+  <g transform="translate(510,130)">
+    <path d="M-30,10 Q0,-20 30,10" fill="none" stroke="#00bcd4" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+    <path d="M-20,20 Q0,-5 20,20" fill="none" stroke="#00bcd4" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+    <path d="M-10,30 Q0,18 10,30" fill="none" stroke="#00bcd4" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="0" cy="38" r="4" fill="#00bcd4"/>
+  </g>
+
+  <!-- Panel 3 - Middle left: Soap bubbles -->
+  <rect x="12" y="214" width="180" height="185" rx="6" fill="url(#panel2)"/>
+  <!-- Large iridescent bubbles -->
+  <circle cx="90" cy="290" r="50" fill="url(#bubble1)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+  <circle cx="90" cy="290" r="50" fill="none" stroke="rgba(0,188,212,0.4)" stroke-width="1"/>
+  <ellipse cx="72" cy="268" rx="12" ry="7" fill="rgba(255,255,255,0.5)" transform="rotate(-30,72,268)"/>
+  <circle cx="130" cy="340" r="32" fill="url(#bubble2)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+  <ellipse cx="118" cy="326" rx="8" ry="5" fill="rgba(255,255,255,0.45)" transform="rotate(-30,118,326)"/>
+  <circle cx="45" cy="345" r="22" fill="url(#bubble1)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <circle cx="155" cy="250" r="18" fill="url(#bubble2)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <circle cx="35" cy="250" r="12" fill="url(#bubble1)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <circle cx="155" cy="380" r="14" fill="url(#bubble2)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+  <!-- Small bubbles -->
+  <circle cx="70" cy="370" r="7" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+  <circle cx="110" cy="220" r="8" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+  <circle cx="150" cy="300" r="6" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+
+  <!-- Panel 4 - Middle center: Tropical fish -->
+  <rect x="204" y="214" width="190" height="185" rx="6" fill="#006064"/>
+  <!-- Underwater gradient -->
+  <rect x="204" y="214" width="190" height="185" rx="6" fill="url(#panel6)"/>
+  <!-- Sea floor -->
+  <ellipse cx="299" cy="399" rx="95" ry="20" fill="#004d40"/>
+  <!-- Coral -->
+  <path d="M220 395 Q225 370 222 355 Q228 360 230 340 Q236 360 238 350 Q240 370 245 395" fill="#ff7043" stroke="#e64a19" stroke-width="0.5"/>
+  <path d="M355 395 Q360 375 357 360 Q363 365 365 348 Q371 368 373 395" fill="#ec407a" stroke="#c2185b" stroke-width="0.5"/>
+  <!-- Fish 1 - Tropical orange/white clownfish -->
+  <ellipse cx="270" cy="290" rx="28" ry="18" fill="#ff7043"/>
+  <ellipse cx="272" cy="290" rx="20" ry="16" fill="#ff8a65"/>
+  <polygon points="298,290 315,275 315,305" fill="#ff7043"/>
+  <line x1="260" y1="272" x2="260" y2="308" stroke="white" stroke-width="3"/>
+  <line x1="275" y1="272" x2="275" y2="308" stroke="white" stroke-width="3"/>
+  <circle cx="255" cy="284" r="5" fill="white"/>
+  <circle cx="253" cy="283" r="2.5" fill="#111"/>
+  <!-- Fish 2 - Blue tang -->
+  <ellipse cx="330" cy="330" rx="22" ry="14" fill="#1565c0"/>
+  <ellipse cx="332" cy="330" rx="16" ry="12" fill="#1976d2"/>
+  <polygon points="352,330 366,318 366,342" fill="#1565c0"/>
+  <line x1="340" y1="316" x2="340" y2="344" stroke="#ffeb3b" stroke-width="2"/>
+  <circle cx="320" cy="325" r="4" fill="white"/>
+  <circle cx="318" cy="324" r="2" fill="#111"/>
+  <!-- Fish 3 - Small yellow fish -->
+  <ellipse cx="240" cy="355" rx="15" ry="10" fill="#fdd835"/>
+  <polygon points="255,355 267,348 267,362" fill="#fbc02d"/>
+  <circle cx="234" cy="351" r="3" fill="white"/>
+  <circle cx="233" cy="350" r="1.5" fill="#111"/>
+  <!-- Bubbles from fish -->
+  <circle cx="245" cy="340" r="3" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+  <circle cx="248" cy="330" r="4" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+  <circle cx="275" cy="265" r="4" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+
+  <!-- Panel 5 - Middle right: Lime/green glossy elements -->
+  <rect x="406" y="214" width="182" height="185" rx="6" fill="url(#panel3)"/>
+  <!-- Tropical leaves -->
+  <path d="M497 214 Q550 270 520 350 Q490 300 440 280 Q480 260 497 214 Z" fill="#558b2f" opacity="0.7"/>
+  <path d="M406 300 Q460 260 540 290 Q490 320 460 360 Q430 330 406 300 Z" fill="#689f38" opacity="0.6"/>
+  <path d="M497 399 Q540 350 570 280 Q560 340 588 370 Q545 390 497 399 Z" fill="#33691e" opacity="0.7"/>
+  <!-- Lime fruit -->
+  <circle cx="470" cy="270" r="22" fill="#8bc34a"/>
+  <circle cx="470" cy="270" r="22" fill="none" stroke="#558b2f" stroke-width="2"/>
+  <path d="M460 268 Q470 260 480 268" fill="none" stroke="#558b2f" stroke-width="1.5"/>
+  <line x1="470" y1="248" x2="470" y2="258" stroke="#33691e" stroke-width="2"/>
+  <!-- Glass shine overlay on panel -->
+  <rect x="406" y="214" width="182" height="92" rx="6" fill="rgba(255,255,255,0.2)"/>
+  <!-- Tech circle UI elements -->
+  <circle cx="540" cy="340" r="30" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+  <circle cx="540" cy="340" r="20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+  <circle cx="540" cy="340" r="8" fill="rgba(255,255,255,0.5)"/>
+  <!-- Progress bar -->
+  <rect x="420" y="370" width="155" height="10" rx="5" fill="rgba(255,255,255,0.3)"/>
+  <rect x="420" y="370" width="100" height="10" rx="5" fill="rgba(255,255,255,0.8)"/>
+
+  <!-- Panel 6 - Bottom left: Aurora/Vista waves -->
+  <rect x="12" y="411" width="284" height="177" rx="6" fill="#1a237e"/>
+  <!-- Aurora waves -->
+  <path d="M12 500 Q80 450 150 480 Q220 510 296 460 L296 588 L12 588 Z" fill="#00bcd4" opacity="0.3"/>
+  <path d="M12 520 Q90 480 170 505 Q250 530 296 490 L296 588 L12 588 Z" fill="#4dd0e1" opacity="0.25"/>
+  <path d="M12 540 Q100 510 190 530 Q270 550 296 520 L296 588 L12 588 Z" fill="#80deea" opacity="0.2"/>
+  <!-- Glowing cyan ribbons -->
+  <path d="M12 460 Q70 430 130 455 Q190 480 250 445 Q275 438 296 450" fill="none" stroke="#00e5ff" stroke-width="4" opacity="0.7"/>
+  <path d="M12 475 Q80 445 140 468 Q200 491 260 458 Q280 452 296 462" fill="none" stroke="#84ffff" stroke-width="3" opacity="0.5"/>
+  <!-- Purple ribbon -->
+  <path d="M12 490 Q60 475 120 490 Q180 505 240 475 Q268 465 296 478" fill="none" stroke="#ce93d8" stroke-width="3.5" opacity="0.6"/>
+  <!-- Stars -->
+  <circle cx="50" cy="430" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="120" cy="420" r="1" fill="white" opacity="0.7"/>
+  <circle cx="200" cy="428" r="1.5" fill="white" opacity="0.8"/>
+  <circle cx="260" cy="415" r="1" fill="white" opacity="0.6"/>
+  <circle cx="80" cy="442" r="1" fill="white" opacity="0.7"/>
+  <!-- Media visualizer bars -->
+  <rect x="30" y="540" width="12" height="35" rx="2" fill="#00e5ff" opacity="0.8"/>
+  <rect x="48" y="530" width="12" height="45" rx="2" fill="#00e5ff" opacity="0.75"/>
+  <rect x="66" y="548" width="12" height="27" rx="2" fill="#00e5ff" opacity="0.8"/>
+  <rect x="84" y="535" width="12" height="40" rx="2" fill="#84ffff" opacity="0.7"/>
+  <rect x="102" y="525" width="12" height="50" rx="2" fill="#84ffff" opacity="0.75"/>
+  <rect x="120" y="542" width="12" height="33" rx="2" fill="#00e5ff" opacity="0.8"/>
+  <rect x="138" y="538" width="12" height="37" rx="2" fill="#00e5ff" opacity="0.7"/>
+
+  <!-- Panel 7 - Bottom right: Clean white/glass car -->
+  <rect x="308" y="411" width="280" height="177" rx="6" fill="url(#panel5)"/>
+  <!-- Road -->
+  <rect x="308" y="530" width="280" height="58" fill="#b0bec5"/>
+  <rect x="308" y="530" width="280" height="8" fill="#90a4ae"/>
+  <!-- Road markings -->
+  <rect x="355" y="545" width="40" height="5" rx="2" fill="white" opacity="0.7"/>
+  <rect x="430" y="545" width="40" height="5" rx="2" fill="white" opacity="0.7"/>
+  <rect x="505" y="545" width="40" height="5" rx="2" fill="white" opacity="0.7"/>
+  <!-- Car body - sleek white/silver -->
+  <rect x="350" y="480" width="200" height="55" rx="12" fill="white" stroke="#b0bec5" stroke-width="1.5"/>
+  <rect x="370" y="460" width="155" height="30" rx="8" fill="#e0f7fa" stroke="#b2ebf2" stroke-width="1.5"/>
+  <!-- Car windows - glass effect -->
+  <rect x="375" y="462" width="65" height="26" rx="5" fill="#81d4fa" opacity="0.7"/>
+  <rect x="447" y="462" width="70" height="26" rx="5" fill="#81d4fa" opacity="0.7"/>
+  <!-- Window gloss -->
+  <rect x="377" y="464" width="30" height="8" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <rect x="449" y="464" width="30" height="8" rx="3" fill="rgba(255,255,255,0.5)"/>
+  <!-- Wheels -->
+  <circle cx="390" cy="535" r="22" fill="#455a64"/>
+  <circle cx="390" cy="535" r="14" fill="#78909c"/>
+  <circle cx="390" cy="535" r="6" fill="white"/>
+  <circle cx="510" cy="535" r="22" fill="#455a64"/>
+  <circle cx="510" cy="535" r="14" fill="#78909c"/>
+  <circle cx="510" cy="535" r="6" fill="white"/>
+  <!-- Car shine -->
+  <path d="M365 484 Q380 478 420 480" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Speed lines -->
+  <line x1="320" y1="500" x2="350" y2="500" stroke="#00bcd4" stroke-width="2" opacity="0.5"/>
+  <line x1="318" y1="508" x2="350" y2="508" stroke="#00bcd4" stroke-width="1.5" opacity="0.4"/>
+  <line x1="322" y1="516" x2="350" y2="516" stroke="#00bcd4" stroke-width="1" opacity="0.3"/>
+
+  <!-- Season label -->
+  <rect x="0" y="558" width="600" height="42" fill="rgba(0,97,107,0.85)"/>
+  <text x="300" y="584" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="3">FRUTIGER AERO</text>
+
+  <!-- Glossy overlay on entire image -->
+  <rect x="0" y="0" width="600" height="120" fill="rgba(255,255,255,0.04)"/>
+</svg>
