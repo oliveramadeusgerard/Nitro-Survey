@@ -1100,6 +1100,7 @@
                 <h2>Thank You!</h2>
                 <p>Your feedback has been recorded. We'll use it to shape the next season of Nitro Type. Stay tuned! 🏎️
                 </p>
+                <button class="btn btn-ghost" id="btn-retake-thankyou">Retake Survey</button>
             </div>
         </section>
 
@@ -1271,6 +1272,7 @@
                 document.getElementById('btn-next-1').addEventListener('click', () => { if (validateStep1()) goToStep(2); });
                 document.getElementById('btn-back-2').addEventListener('click', () => goToStep(1));
                 document.getElementById('btn-submit').addEventListener('click', () => { saveResponse(gatherResponse()); goToStep(4); });
+                document.getElementById('btn-retake-thankyou').addEventListener('click', () => { localStorage.removeItem(SUBMITTED_KEY); location.reload(); });
                 document.getElementById('season-concepts-container').addEventListener('change', () => updateVoteBtn('season', SEASON_CONCEPTS, 'btn-submit'));
                 document.getElementById('seasonCompletion').addEventListener('change', () => document.getElementById('err-season').classList.remove('show'));
                 document.getElementById('btn-retake').addEventListener('click', () => { localStorage.removeItem(SUBMITTED_KEY); location.reload(); });
